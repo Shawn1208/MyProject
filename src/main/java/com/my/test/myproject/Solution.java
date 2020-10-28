@@ -3,12 +3,17 @@ package com.my.test.myproject;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @Author: Ruixiao.Xu
  * @Date: 21/7/20 3:49 PM
  */
 public class Solution {
+
+    public Solution(){
+
+    }
 
     /**
      * 给定一个无序的整数数组，找到其中最长上升子序列的长度。
@@ -125,7 +130,6 @@ public class Solution {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
-    @Test
     public int findPeakElement(int[] nums) {
         int start = 0, end = nums.length - 1;
         while(true){
@@ -139,5 +143,73 @@ public class Solution {
             }
         }
     }
+
+    /**
+     * 打乱一个没有重复元素的数组。
+     *
+     *  
+     *
+     * 示例:
+     *
+     * // 以数字集合 1, 2 和 3 初始化数组。
+     * int[] nums = {1,2,3};
+     * Solution solution = new Solution(nums);
+     *
+     * // 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。
+     * solution.shuffle();
+     *
+     * // 重设数组到它的初始状态[1,2,3]。
+     * solution.reset();
+     *
+     * // 随机返回数组[1,2,3]打乱后的结果。
+     * solution.shuffle();
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/shuffle-an-array
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+
+    int[] originNums;
+//    public Solution(int[] nums) {
+//        originNums=nums;
+//    }
+
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return originNums;
+    }
+
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle(int[] result) {
+        //int[] result = new int[originNums.length];
+        //System.arraycopy(originNums, 0, result, 0, result.length);
+        for (int i = result.length - 1; i > 0; i--) {
+            int random = new Random().nextInt(i);
+            //System.out.println(random);
+            int temp = result[random];
+            result[random] = result[i];
+            result[i] = temp;
+        }
+        for(int a: result){
+            System.out.println(a);
+        }
+        return result;
+    }
+
+    @Test
+    public void test(){
+        int[] result = new int[] {
+            99,2,3,4,5,6,7
+        };
+        shuffle(result);
+
+    }
+
+    /**
+     * Your Solution object will be instantiated and called as such:
+     * Solution obj = new Solution(nums);
+     * int[] param_1 = obj.reset();
+     * int[] param_2 = obj.shuffle();
+     */
 
 }
